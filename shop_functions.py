@@ -1,6 +1,9 @@
-BULK_CHERRY_DISCOUNT = 30
+PRICE_OF_APPLES = 100
+BULK_CHERRY_DISCOUNT = 20
 PRICES = {
-    'apples':100,
+    'apples': PRICE_OF_APPLES,
+    'pommes': PRICE_OF_APPLES,
+    'mele': PRICE_OF_APPLES,
     'bananas':150,
     'cherries':75
 }
@@ -36,13 +39,14 @@ def add_to_running_total(bought_item):
         total += apply_discount(bought_item)
     return '%s : %s' % (bought_item, total)
 
+def clean_string(input_string):
+    return input_string.lower().strip()
 
 def running_total(bought_item):
     global total, no_cherries
     if ',' in bought_item:
         productlist = bought_item.split(',')
-        for product in productlist:
-            add_to_running_total(product)
+        [add_to_running_total(clean_string(product)) for product in productlist]
         return '%s : %s' % (bought_item, total)
 
     else:

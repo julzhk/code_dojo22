@@ -1,3 +1,4 @@
+BULK_CHERRY_DISCOUNT = 20
 PRICES = {
     'apples':100,
     'bananas':150,
@@ -18,7 +19,7 @@ def apply_discount(s):
     if s == 'cherries':
         no_cherries += 1
         if is_even(no_cherries):
-            return -20
+            return -BULK_CHERRY_DISCOUNT
     return 0
 
 

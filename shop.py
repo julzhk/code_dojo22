@@ -1,4 +1,3 @@
-
 from shop_functions import running_total
 
 while True:

@@ -64,3 +64,13 @@ class test_shop(unittest.TestCase):
         self.assertEqual(clean_string(' aaa '),'aaa')
         self.assertEqual(clean_string(' Aaa '),'aaa')
         self.assertEqual(clean_string(' Aaa B '),'aaa b')
+
+    def test_iteration_5_acceptance_test(self):
+        self.assertEqual(running_total('mele'),'mele : 100')
+        self.assertEqual(running_total('pommes'),'pommes : 200')
+        self.assertEqual(running_total('pommes'),'pommes : 300')
+        self.assertEqual(running_total('apples'),'apples : 400')
+        self.assertEqual(running_total('pommes'),'pommes : 400')
+        self.assertEqual(running_total('mele'),'mele : 450')
+        self.assertEqual(running_total('cherries'),'cherries : 525')
+        self.assertEqual(running_total('cherries'),'cherries : 580')

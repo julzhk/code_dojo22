@@ -99,12 +99,18 @@ class test_shop(unittest.TestCase):
         self.assertEqual(calculate_totals('mele'),PRICES['mele'])
 
     def acceptance_test_4(self):
-        self.assertEqual(running_total('cherries'),'cherries : 75')
-        self.assertEqual(running_total('pommes'),'pommes : 175')
-        self.assertEqual(running_total('cherries'),'cherries : 230')
-        self.assertEqual(running_total('bananas'),'bananas : 380')
-        self.assertEqual(running_total('bananas'),'bananas : 380')
-        self.assertEqual(running_total('apples'),'apples : 480')
+        self.assertEqual(calculate_totals('cherries'),
+                         PRICES['cherries'])
+        self.assertEqual(calculate_totals('pommes'),
+                         PRICES['cherries']+ PRICES['pommes'])
+        self.assertEqual(calculate_totals('cherries'),
+                         PRICES['cherries']+
+                         PRICES['pommes']  +
+                         PRICES['cherries']-
+                         BULK_CHERRY_DISCOUNT)
+        self.assertEqual(calculate_totals('bananas'),'bananas : 380')
+        self.assertEqual(calculate_totals('bananas'),'bananas : 380')
+        self.assertEqual(calculate_totals('apples'),'apples : 480')
 
     def test_string_cleaner(self):
         self.assertEqual(clean_string(' aaa '),'aaa')

@@ -14,7 +14,6 @@ PRICES = {
 purchases = []
 total = 0
 no_cherries = 0
-no_bananas = 0
 no_mele = 0
 no_apples = 0
 
@@ -109,6 +108,6 @@ def running_total(bought_item,four_apple_discount=False):
     return '%s : %s' % (bought_item, total)
 
 def resettotal():
-    global total, no_bananas, no_mele, no_cherries,no_apples,purchases
-    total,  no_bananas, no_mele, no_cherries, no_apples= 0,0,0,0,0
+    global total, no_mele, no_cherries,no_apples,purchases
+    total, no_mele, no_cherries, no_apples= 0,0,0,0
     purchases = []

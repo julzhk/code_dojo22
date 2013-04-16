@@ -13,7 +13,6 @@ PRICES = {
 }
 purchases = []
 total = 0
-no_cherries = 0
 no_apples = 0
 
 
@@ -46,11 +45,10 @@ def apply_discount(s, purchases):
     '''
     for every second bag of cherries, give a special 20p discount
     '''
-    global no_apples, no_cherries
+    global no_apples
     if s == 'apples':
         no_apples += 1
     if s == 'cherries':
-        no_cherries += 1
         if is_even(count_cherries(purchases)):
             return -BULK_CHERRY_DISCOUNT
     if s == 'bananas':
@@ -91,7 +89,7 @@ def clean_string(input_string):
 
 
 def calculate_totals(bought_item, four_apple_discount=False):
-    global total, no_cherries
+    global total
     if ',' in bought_item:
         productlist = bought_item.split(',')
         [add_to_running_total(clean_string(product), four_apple_discount=four_apple_discount) for product in
@@ -106,6 +104,6 @@ def running_total(bought_item,four_apple_discount=False):
     return '%s : %s' % (bought_item, total)
 
 def resettotal():
-    global total, no_cherries,no_apples,purchases
-    total, no_cherries, no_apples= 0,0,0
+    global total,no_apples,purchases
+    total, no_apples= 0,0
     purchases = []

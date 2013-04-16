@@ -16,13 +16,16 @@ no_apples = 0
 
 
 def is_even(n):
-    return n % 2 == 0
+    return n is not 0 and n % 2 == 0
 
 def is_div_by_three(n):
-    return n % 3 == 0
+    return n is not 0 and n % 3 == 0
 
 def is_div_by_four(n):
     return n is not 0 and n % 4 == 0
+
+def is_div_by_five(n):
+    return n is not 0 and n % 5 == 0
 
 
 def apply_discount(s):
@@ -53,10 +56,12 @@ def apply_discount(s):
 def four_apples_discount(s):
     global no_cherries, no_bananas, no_pommes, no_mele, no_apples
     total_apples_by_any_name = no_pommes + no_mele + no_apples
+    r = 0
     if is_div_by_four(total_apples_by_any_name):
-        return -100
-    return 0
-
+        r = r-100
+    if is_div_by_five(sum([no_cherries, no_bananas, total_apples_by_any_name])):
+        r = r -200
+    return r
 
 
 def add_to_running_total(bought_item,four_apple_discount=False):

@@ -90,11 +90,20 @@ class test_shop(unittest.TestCase):
         self.assertEqual(running_total('cherries'),'cherries : 580')
 
 
-    def test_iteration_6_acceptance_test(self):
+    def test_iteration_6a_acceptance_test(self):
         # client requiremnt:
         # 4 apples ( with any name) get a discount of -100
         # and 5 item get a discount -200
         self.assertEqual(running_total('mele,pommes,pommes,mele',
                                        four_apple_discount=True),
                          'mele,pommes,pommes,mele : 250')
+    def test_iteration_6b_acceptance_test(self):
+        # client requiremnt:
+        # 4 apples ( with any name) get a discount of -100
+        # and 5 item get a discount -200
+        self.assertEqual(running_total('mele,pommes,pommes,mele,apples',
+                                       four_apple_discount=True),
+                         'mele,pommes,pommes,mele,apples : 150')
+
+
 

@@ -1,6 +1,8 @@
 import unittest
 from shop_functions import (running_total, resettotal,
-                            clean_string, calculate_totals, PRICES, BULK_CHERRY_DISCOUNT)
+                            clean_string, calculate_totals, PRICES,
+                            BULK_CHERRY_DISCOUNT, count_cherries
+                            )
 
 class test_shop(unittest.TestCase):
     def setUp(self):
@@ -33,7 +35,8 @@ class test_shop(unittest.TestCase):
         get a discount of 20p
         '''
         self.assertEqual(PRICES['apples'],   calculate_totals('apples'))
-        self.assertEqual(PRICES['apples']+PRICES['cherries'], calculate_totals('cherries'))
+        self.assertEqual(PRICES['apples']+
+                         PRICES['cherries'], calculate_totals('cherries'))
         self.assertEqual(
             PRICES['apples']+
             PRICES['cherries']+
@@ -146,5 +149,11 @@ class test_shop(unittest.TestCase):
                                        four_apple_discount=True),
                          'mele,pommes,pommes,mele,apples : 150')
 
-
+    def test_cherry_count_function(self):
+        purchases = ['cherries']
+        self.assertEqual(count_cherries(purchases),1)
+        purchases = ['cherries'] * 4
+        self.assertEqual(count_cherries(purchases),4)
+        purchases = ['cherries'] * 41
+        self.assertEqual(count_cherries(purchases),41)
 

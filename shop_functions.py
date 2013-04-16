@@ -7,6 +7,7 @@ PRICES = {
     'bananas':150,
     'cherries':75
 }
+purchases = []
 total = 0
 no_cherries = 0
 no_bananas = 0
@@ -30,8 +31,11 @@ def is_div_by_four(n):
 def is_div_by_five(n):
     return is_multiple(n,5)
 
+def count_cherries(purchases):
+    return sum([1 for item in purchases if item =='cherries'])
 
-def apply_discount(s):
+
+def apply_discount(s, purchases):
     '''
     for every second bag of cherries, give a special 20p discount
     '''
@@ -40,7 +44,7 @@ def apply_discount(s):
         no_apples += 1
     if s == 'cherries':
         no_cherries += 1
-        if is_even(no_cherries):
+        if is_even(count_cherries(purchases)):
             return -BULK_CHERRY_DISCOUNT
     if s == 'bananas':
         no_bananas  += 1
@@ -68,10 +72,11 @@ def four_apples_discount(s):
 
 
 def add_to_running_total(bought_item,four_apple_discount=False):
-    global total
+    global total, purchases
     if bought_item in PRICES:
         total += PRICES[bought_item]
-        total += apply_discount(bought_item)
+        purchases.append(bought_item)
+        total += apply_discount(bought_item,purchases)
         if four_apple_discount:
             total += four_apples_discount(bought_item)
     return bought_item, total
@@ -96,5 +101,6 @@ def running_total(bought_item,four_apple_discount=False):
     return '%s : %s' % (bought_item, total)
 
 def resettotal():
-    global total, no_pommes, no_bananas, no_mele, no_cherries,no_apples
+    global total, no_pommes, no_bananas, no_mele, no_cherries,no_apples,purchases
     total, no_pommes, no_bananas, no_mele, no_cherries, no_apples= 0,0,0,0,0,0
+    purchases = []

@@ -94,5 +94,7 @@ class test_shop(unittest.TestCase):
         # client requiremnt:
         # 4 apples ( with any name) get a discount of -100
         # and 5 item get a discount -200
-        # self.assertEqual(running_total('mele,pommes,pommes,mele'),'mele,pommes,pommes,mele : 250')
-        pass
+        self.assertEqual(running_total('mele,pommes,pommes,mele',
+                                       four_apple_discount=True),
+                         'mele,pommes,pommes,mele : 250')
+

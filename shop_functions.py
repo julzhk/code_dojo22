@@ -40,20 +40,21 @@ def count_bananas(purchases):
     return count_items(purchases,'bananas')
 
 
-def apply_discount(s, purchases):
+def apply_discount(purchases):
     '''
     for every second bag of cherries, give a special 20p discount
     '''
-    if s == 'cherries':
+    most_recent_purchase = purchases[-1]
+    if most_recent_purchase == 'cherries':
         if is_even(count_cherries(purchases)):
             return -BULK_CHERRY_DISCOUNT
-    if s == 'bananas':
+    if most_recent_purchase == 'bananas':
         if is_even(count_bananas(purchases)):
             return -PRICES['bananas']
-    if s == 'pommes':
+    if most_recent_purchase == 'pommes':
         if is_div_by_three(count_items(purchases,'pommes')):
             return -BUY_THREE_POMMES_DISCOUNT
-    if s == 'mele':
+    if most_recent_purchase == 'mele':
         if is_even(count_items(purchases,'mele')):
             return -BUY_TWO_MELE_DISCOUNT
     return 0
@@ -75,7 +76,7 @@ def add_to_running_total(bought_item,four_apple_discount=False):
     if bought_item in PRICES:
         total += PRICES[bought_item]
         purchases.append(bought_item)
-        total += apply_discount(bought_item,purchases)
+        total += apply_discount(purchases)
         if four_apple_discount:
             total += four_apples_discount(purchases)
     return bought_item, total

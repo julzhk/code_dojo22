@@ -1,3 +1,7 @@
+BUY_ANY_FIVE_ITEMS_DISCOUNT = 200
+BUY_FOUR_APPLES_BY_ANY_NAME_DISCOUNT = 100
+BUY_TWO_MELE_DISCOUNT = 50
+BUY_THREE_POMMES_DISCOUNT = 100
 PRICE_OF_APPLES = 100
 BULK_CHERRY_DISCOUNT = 20
 PRICES = {
@@ -59,11 +63,11 @@ def apply_discount(s, purchases):
     if s == 'pommes':
         no_pommes += 1
         if is_div_by_three(count_items(purchases,'pommes')):
-            return -100
+            return -BUY_THREE_POMMES_DISCOUNT
     if s == 'mele':
         no_mele += 1
         if is_even(count_items(purchases,'mele')):
-            return -50
+            return -BUY_TWO_MELE_DISCOUNT
     return 0
 
 def four_apples_discount(s):
@@ -71,9 +75,9 @@ def four_apples_discount(s):
     total_apples_by_any_name = no_pommes + no_mele + no_apples
     r = 0
     if is_div_by_four(total_apples_by_any_name):
-        r = r-100
+        r = r- BUY_FOUR_APPLES_BY_ANY_NAME_DISCOUNT
     if is_div_by_five(sum([no_cherries, no_bananas, total_apples_by_any_name])):
-        r = r -200
+        r = r - BUY_ANY_FIVE_ITEMS_DISCOUNT
     return r
 
 

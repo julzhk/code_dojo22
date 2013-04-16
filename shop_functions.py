@@ -15,7 +15,6 @@ purchases = []
 total = 0
 no_cherries = 0
 no_bananas = 0
-no_pommes = 0
 no_mele = 0
 no_apples = 0
 
@@ -49,7 +48,7 @@ def apply_discount(s, purchases):
     '''
     for every second bag of cherries, give a special 20p discount
     '''
-    global no_pommes, no_mele, no_apples, no_cherries
+    global no_mele, no_apples, no_cherries
     if s == 'apples':
         no_apples += 1
     if s == 'cherries':
@@ -60,7 +59,6 @@ def apply_discount(s, purchases):
         if is_even(count_bananas(purchases)):
             return -PRICES['bananas']
     if s == 'pommes':
-        no_pommes += 1
         if is_div_by_three(count_items(purchases,'pommes')):
             return -BUY_THREE_POMMES_DISCOUNT
     if s == 'mele':
@@ -111,6 +109,6 @@ def running_total(bought_item,four_apple_discount=False):
     return '%s : %s' % (bought_item, total)
 
 def resettotal():
-    global total, no_pommes, no_bananas, no_mele, no_cherries,no_apples,purchases
-    total, no_pommes, no_bananas, no_mele, no_cherries, no_apples= 0,0,0,0,0,0
+    global total, no_bananas, no_mele, no_cherries,no_apples,purchases
+    total,  no_bananas, no_mele, no_cherries, no_apples= 0,0,0,0,0
     purchases = []

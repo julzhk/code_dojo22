@@ -31,15 +31,18 @@ def is_div_by_four(n):
 def is_div_by_five(n):
     return is_multiple(n,5)
 
+def count_items(purchases,count_item):
+    return sum([1 for item in purchases if item == count_item])
+
 def count_cherries(purchases):
-    return sum([1 for item in purchases if item =='cherries'])
+    return count_items(purchases,'cherries')
 
 
 def apply_discount(s, purchases):
     '''
     for every second bag of cherries, give a special 20p discount
     '''
-    global no_cherries, no_bananas, no_pommes, no_mele, no_apples
+    global no_bananas, no_pommes, no_mele, no_apples, no_cherries
     if s == 'apples':
         no_apples += 1
     if s == 'cherries':

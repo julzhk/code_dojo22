@@ -47,14 +47,20 @@ class test_shop(unittest.TestCase):
         '''
         self.assertEqual(running_total('apples,cherries,bananas'),'apples,cherries,bananas : 325')
 
-    def test_dirty_csv_input(self):
-        # self.assertEqual(running_total('apples, cherries, bananas'),'apples, cherries, bananas : 325')
-        # self.assertEqual(running_total('Apple,Cherries,Bananas'),325)
-        # self.assertEqual(running_total('Apple, Cherries, Bananas'),325)
-        # self.assertEqual(running_total('Cherries,Cherries'), 130)
-        # self.assertEqual(running_total('Cherries, Cherries'), 130)
-        # self.assertEqual(running_total('cherries,cherries'), 130)
-        # self.assertEqual(running_total('cherries, cherries'), 130)
+    def test_dirty_csv_input1(self):
+        self.assertEqual(running_total('apples, cherries, bananas'),'apples, cherries, bananas : 325')
+    def test_dirty_csv_input2(self):
+        self.assertEqual(running_total('Apples,Cherries,Bananas'),'Apples,Cherries,Bananas : 325')
+    def test_dirty_csv_input3(self):
+        self.assertEqual(running_total('Apples, Cherries, Bananas'),'Apples, Cherries, Bananas : 325')
+    def test_dirty_csv_input4(self):
+        self.assertEqual(running_total('Cherries,Cherries'), 'Cherries,Cherries : 130')
+    def test_dirty_csv_input5(self):
+        self.assertEqual(running_total('Cherries, Cherries'), 'Cherries, Cherries : 130')
+    def test_dirty_csv_input6(self):
+        self.assertEqual(running_total('cherries,cherries'), 'cherries,cherries : 130')
+    def test_dirty_csv_input7(self):
+        self.assertEqual(running_total('cherries, cherries'), 'cherries, cherries : 130')
         pass
 
     def test_allow_pommes(self):

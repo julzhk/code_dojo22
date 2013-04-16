@@ -13,7 +13,6 @@ PRICES = {
 }
 purchases = []
 total = 0
-no_apples = 0
 
 
 def is_multiple(val,divisor):
@@ -45,9 +44,6 @@ def apply_discount(s, purchases):
     '''
     for every second bag of cherries, give a special 20p discount
     '''
-    global no_apples
-    if s == 'apples':
-        no_apples += 1
     if s == 'cherries':
         if is_even(count_cherries(purchases)):
             return -BULK_CHERRY_DISCOUNT
@@ -104,6 +100,6 @@ def running_total(bought_item,four_apple_discount=False):
     return '%s : %s' % (bought_item, total)
 
 def resettotal():
-    global total,no_apples,purchases
-    total, no_apples= 0,0
+    global total, purchases
+    total= 0
     purchases = []

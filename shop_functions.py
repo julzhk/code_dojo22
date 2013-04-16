@@ -69,15 +69,14 @@ def apply_discount(s, purchases):
             return -BUY_TWO_MELE_DISCOUNT
     return 0
 
-def four_apples_discount(s, purchase):
-    global no_cherries
+def four_apples_discount(purchases):
     total_apples_by_any_name = count_items(purchases,'pommes')+\
                                count_items(purchases,'mele')+\
                                count_items(purchases,'apples')
     r = 0
     if is_div_by_four(total_apples_by_any_name):
         r = r- BUY_FOUR_APPLES_BY_ANY_NAME_DISCOUNT
-    if is_div_by_five(len(purchase)):
+    if is_div_by_five(len(purchases)):
         r = r - BUY_ANY_FIVE_ITEMS_DISCOUNT
     return r
 
@@ -89,7 +88,7 @@ def add_to_running_total(bought_item,four_apple_discount=False):
         purchases.append(bought_item)
         total += apply_discount(bought_item,purchases)
         if four_apple_discount:
-            total += four_apples_discount(bought_item,purchases)
+            total += four_apples_discount(purchases)
     return bought_item, total
 
 def clean_string(input_string):

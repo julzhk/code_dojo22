@@ -37,6 +37,9 @@ def count_items(purchases,count_item):
 def count_cherries(purchases):
     return count_items(purchases,'cherries')
 
+def count_bananas(purchases):
+    return count_items(purchases,'bananas')
+
 
 def apply_discount(s, purchases):
     '''
@@ -51,15 +54,15 @@ def apply_discount(s, purchases):
             return -BULK_CHERRY_DISCOUNT
     if s == 'bananas':
         no_bananas  += 1
-        if is_even(no_bananas):
+        if is_even(count_bananas(purchases)):
             return -PRICES['bananas']
     if s == 'pommes':
         no_pommes += 1
-        if is_div_by_three(no_pommes):
+        if is_div_by_three(count_items(purchases,'pommes')):
             return -100
     if s == 'mele':
         no_mele += 1
-        if is_even(no_mele):
+        if is_even(count_items(purchases,'mele')):
             return -50
     return 0
 

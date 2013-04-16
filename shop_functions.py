@@ -15,17 +15,20 @@ no_mele = 0
 no_apples = 0
 
 
+def is_multiple(val,divisor):
+    return val is not 0 and val % divisor == 0
+
 def is_even(n):
-    return n is not 0 and n % 2 == 0
+    return is_multiple(n,2)
 
 def is_div_by_three(n):
-    return n is not 0 and n % 3 == 0
+    return is_multiple(n,3)
 
 def is_div_by_four(n):
-    return n is not 0 and n % 4 == 0
+    return is_multiple(n,4)
 
 def is_div_by_five(n):
-    return n is not 0 and n % 5 == 0
+    return is_multiple(n,5)
 
 
 def apply_discount(s):

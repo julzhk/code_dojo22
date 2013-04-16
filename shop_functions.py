@@ -71,20 +71,26 @@ def add_to_running_total(bought_item,four_apple_discount=False):
         total += apply_discount(bought_item)
         if four_apple_discount:
             total += four_apples_discount(bought_item)
-    return '%s : %s' % (bought_item, total)
+    return bought_item, total
 
 def clean_string(input_string):
     return input_string.lower().strip()
 
-def running_total(bought_item,four_apple_discount=False):
+
+def calculate_totals(bought_item, four_apple_discount=False):
     global total, no_cherries
     if ',' in bought_item:
         productlist = bought_item.split(',')
-        [add_to_running_total(clean_string(product),four_apple_discount=four_apple_discount) for product in productlist]
-        return '%s : %s' % (bought_item, total)
-
+        [add_to_running_total(clean_string(product), four_apple_discount=four_apple_discount) for product in
+         productlist]
     else:
-        return add_to_running_total(bought_item,four_apple_discount=four_apple_discount)
+        bought_item, total = add_to_running_total(bought_item, four_apple_discount=four_apple_discount)
+    return total
+
+
+def running_total(bought_item,four_apple_discount=False):
+    total = calculate_totals(bought_item, four_apple_discount)
+    return '%s : %s' % (bought_item, total)
 
 def resettotal():
     global total, no_pommes, no_bananas, no_mele, no_cherries,no_apples

@@ -1,5 +1,5 @@
 import unittest
-from shop_functions import running_total, resettotal, clean_string
+from shop_functions import (running_total, resettotal, clean_string, calculate_totals)
 
 class test_shop(unittest.TestCase):
     def setUp(self):
@@ -7,6 +7,9 @@ class test_shop(unittest.TestCase):
 
     def test_buy_one_apple(self):
         self.assertEqual('apples : 100', running_total('apples'))
+
+    def test_buy_one_apple_total(self):
+        self.assertEqual(100, calculate_totals('apples'))
 
     def test_buy_two_apple(self):
         self.assertEqual('apples : 100', running_total('apples'))
